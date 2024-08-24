@@ -1,0 +1,18 @@
+
+version: '3.8'
+services:
+  alertmanager2awtrix:
+    image: qjoly/une-tasse-de-cafe
+    container_name: alertmanager2awtrix
+    ports:
+      - 5000:5000
+    environment:
+      - "AWTRIX_NOTIFY_URL=http://192.168.1.26/api/notify"
+      - "AWTRIX_USERNAME=awtrix"
+      - "AWTRIX_PASSWORD=awtrix"
+      - "FIRING_ALERT_ICON=555"
+      - "FIRING_TEXT_COLOR=#FF0000"
+      - "RESOLVED_ALERT_ICON=138"
+      - "RESOLVED_TEXT_COLOR=#C0C78C"
+      - "HOLD_ALERT=true"
+
