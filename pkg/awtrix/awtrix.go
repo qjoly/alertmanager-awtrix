@@ -70,7 +70,7 @@ func (ac *AwtrixClient) SendAwtrixNotification(alert types.Alert) error {
 
 	// Define the payload to send to Awtrix
 	payload := map[string]interface{}{
-		"color":    color, // La couleur est maintenant un [3]int
+		"color":    color,
 		"repeat":   5,
 		"duration": 2000,
 		"hold":     ac.holdAlert,
