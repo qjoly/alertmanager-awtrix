@@ -57,8 +57,8 @@ kos:
     ko_data_creation_time: "{{.CommitTimestamp}}"
     sbom: none
     ldflags:
-      - -X main.GoBuildVersion={{.Tag}}
-      - -X main.GoBuildSHA={{.Commit}}
+      - -X version.GoBuildVersion={{.Tag}}
+      - -X version.GoBuildSHA={{.Commit}}
     bare: true
     preserve_import_paths: true
     base_import_paths: true
