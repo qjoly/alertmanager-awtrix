@@ -40,7 +40,9 @@ jobs:
 
       - name: sign container image
         run: |
-            cosign sign --key env://COSIGN_PRIVATE $( docker inspect ghcr.io/qjoly/alertmanager-awtrix/alertmanager-awtrix:${GITHUB_REF#refs/*/} | jq -r '.[0].RepoDigests[0]' )
+            export DOCKER_FULL_SHA=$(docker inspect ghcr.io/qjoly/alertmanager-awtrix/alertmanager-awtrix:${GITHUB_REF#refs/*/} | jq -r '.[0].RepoDigests[0]')
+            echo "SHA: $DOCKER_FULL_SHA"
+            cosign sign --key env://COSIGN_PRIVATE $DOCKER_FULL_SHA
         shell: bash
         env:
           COSIGN_PRIVATE: ${{secrets.COSIGN_PRIVATE}}
