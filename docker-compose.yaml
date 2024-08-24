@@ -2,7 +2,7 @@
 version: '3.8'
 services:
   alertmanager2awtrix:
-    image: qjoly/une-tasse-de-cafe
+    image: ghcr.io/qjoly/alertmanager-awtrix/alertmanager-awtrix:latest
     container_name: alertmanager2awtrix
     ports:
       - 5000:5000
