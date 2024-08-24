@@ -46,7 +46,7 @@ kos:
   - main: .
     working_dir: .
     base_image: gcr.io/distroless/static:nonroot
-    repository: ghcr.io
+    repository: ghcr.io/qjoly
     platforms:
       - linux/amd64
       - linux/arm64
