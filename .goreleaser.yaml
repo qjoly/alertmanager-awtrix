@@ -1,0 +1,64 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - binary: alertmanager-awtrix
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -X main.GoBuildVersion={{.Tag}}
+      - -X main.GoBuildSHA={{.Commit}}
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
+
+archives:
+  - format: tar.gz
+    name_template: >-
+      coffee-animation
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    # use zip for windows archives
+    format_overrides:
+      - goos: windows
+        format: zip
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+kos:
+  - main: .
+    working_dir: .
+    base_image: gcr.io/distroless/static:nonroot
+    repository: ghcr.io
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    tags:
+      - latest
+      - "{{.Tag}}"
+    creation_time: "{{.CommitTimestamp}}"
+    ko_data_creation_time: "{{.CommitTimestamp}}"
+    sbom: none
+    ldflags:
+      - -X main.GoBuildVersion={{.Tag}}
+      - -X main.GoBuildSHA={{.Commit}}
+    bare: true
+    preserve_import_paths: true
+    base_import_paths: true
