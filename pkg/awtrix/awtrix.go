@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/qjoly/alertmanager-awtrix/pkg/types"
+	"alertmanager-awtrix/pkg/types"
 )
 
 type (
@@ -68,9 +68,8 @@ func (ac *AwtrixClient) SendAwtrixNotification(alert types.Alert) error {
 		icon = ac.resolvedAlertIcon
 	}
 
-	// Define the payload to send to Awtrix
 	payload := map[string]interface{}{
-		"color":    color, // La couleur est maintenant un [3]int
+		"color":    color,
 		"repeat":   5,
 		"duration": 2000,
 		"hold":     ac.holdAlert,
@@ -102,7 +101,6 @@ func (ac *AwtrixClient) SendAwtrixNotification(alert types.Alert) error {
 	}
 	defer resp.Body.Close()
 
-	// Check the response status
 	if resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("failed to send notification to Awtrix: %s", resp.Status)
 	}

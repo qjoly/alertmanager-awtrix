@@ -24,7 +24,7 @@ builds:
 archives:
   - format: tar.gz
     name_template: >-
-      coffee-animation
+      alertmanager-awtrix
       {{- title .Os }}_
       {{- if eq .Arch "amd64" }}x86_64
       {{- else if eq .Arch "386" }}i386
@@ -46,7 +46,7 @@ kos:
   - main: .
     working_dir: .
     base_image: gcr.io/distroless/static:nonroot
-    repository: ghcr.io
+    repository: ghcr.io/qjoly/alertmanager-awtrix
     platforms:
       - linux/amd64
       - linux/arm64
@@ -57,8 +57,8 @@ kos:
     ko_data_creation_time: "{{.CommitTimestamp}}"
     sbom: none
     ldflags:
-      - -X main.GoBuildVersion={{.Tag}}
-      - -X main.GoBuildSHA={{.Commit}}
+      - -X version.GoBuildVersion={{.Tag}}
+      - -X version.GoBuildSHA={{.Commit}}
     bare: true
     preserve_import_paths: true
     base_import_paths: true

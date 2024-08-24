@@ -9,9 +9,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/qjoly/alertmanager-awtrix/pkg/awtrix"
-	"github.com/qjoly/alertmanager-awtrix/pkg/types"
-	"github.com/qjoly/alertmanager-awtrix/pkg/version"
+	"alertmanager-awtrix/pkg/awtrix"
+	"alertmanager-awtrix/pkg/types"
+	"alertmanager-awtrix/pkg/version"
 )
 
 var ac *awtrix.AwtrixClient
@@ -76,7 +76,6 @@ func createAwtrixClient() *awtrix.AwtrixClient {
 
 }
 
-// Webhook handler
 func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	var webhook AlertManagerWebhook
 
