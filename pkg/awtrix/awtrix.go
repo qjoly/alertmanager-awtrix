@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/qjoly/alertmanager-awtrix/pkg/types"
+	"alertmanager-awtrix/pkg/types"
 )
 
 type (
