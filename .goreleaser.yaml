@@ -8,8 +8,8 @@ builds:
     env:
       - CGO_ENABLED=0
     ldflags:
-      - -X main.GoBuildVersion={{.Tag}}
-      - -X main.GoBuildSHA={{.Commit}}
+      - -X version.GoBuildVersion={{.Tag}}
+      - -X version.GoBuildSHA={{.Commit}}
     goos:
       - linux
       - windows
